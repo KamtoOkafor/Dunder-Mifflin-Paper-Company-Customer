@@ -1,4 +1,6 @@
 spring:
+  main:
+    banner-mode: "off"
   profiles:
     active: local
   sql:
@@ -32,7 +34,9 @@ logging:
     console: "%d{yyyy-MM-dd HH:mm:ss} - %logger{36} - %level- %msg%n"
   level:
     root: WARN
+    org.springframework.jdbc.datasource.init.ScriptUtils: DEBUG
+    org.hibernate.SQL: TRACE
     org.springframework.web: DEBUG
     com.dunder.mifflin.paper.company.customer: INFO
-    org.hibernate.SQL: INFO                  # Log the SQL statements
+#    org.hibernate.SQL: INFO                  # Log the SQL statements
     org.hibernate.type.descriptor.sql.BasicBinder: TRACE  # Log parameter bindings
