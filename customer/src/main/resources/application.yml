@@ -1,1 +1,40 @@
-spring.application.name=customer
+pring:
+  main:
+    banner-mode: "off"
+  profiles:
+    active: local
+  sql:
+    init:
+      mode: always
+      schema-locations: classpath:database/schema.sql # schema
+      data-locations: classpath:database/data.sql # sample data
+
+  datasource:
+    url: jdbc:h2:mem:testCustomerDB
+    driver-class-name: org.h2.Driver
+    username: sa
+  h2:
+    console:
+      enabled: true
+  jpa:
+    properties:
+      hibernate:
+        format_sql: true # format sql in the logs
+    hibernate:
+      ddl-auto: none
+    show-sql: true
+
+---
+server:
+  port: 8080
+---
+
+logging:
+  pattern:
+    console: "%d{yyyy-MM-dd HH:mm:ss} - %logger{36} - %level- %msg%n"
+  level:
+    root: WARN
+    org.springframework.web: DEBUG
+    com.dunder.mifflin.paper.company.customer: INFO
+    org.hibernate.SQL: INFO                  # Log the SQL statements
+    org.hibernate.type.descriptor.sql.BasicBinder: TRACE  # Log parameter bindings
