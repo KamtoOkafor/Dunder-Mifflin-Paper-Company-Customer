@@ -1,6 +1,4 @@
-pring:
-  main:
-    banner-mode: "off"
+spring:
   profiles:
     active: local
   sql:
