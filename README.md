@@ -57,11 +57,20 @@ A simple Java API for managing customers using Spring Boot and H2 in-memory data
 With this setup, you should have a fully functional Java API for managing customers with unit and integration tests included! Let me know if you have any questions or need further assistance!
 
 ### If you were to scale your customer API service to millions of customers how would you build it differently?
-1. I would use an actual SQL (Postgres, MySQL) database as opposed to an in memory database
-2. I would add a caching layer (with an appropriate Time to live) so we won't have to make a lot of get calls to retrieve a list of customers or to view a single customer
-3. I would add some RBAC and a confirmation screen for the delete endpoint (don't want anyone to willy-nilly delete a customer)
-4. I would host this on Azure or AWS servers, Distributing read-heavy workloads to database replicas.
-5. I would configure auto-scaling groups in cloud providers (AWS, Azure) to add or remove instances based on traffic.
-6. I would add some rate limiting and throttling  and tracking for users accessing the defined endpoints
-7. I would emit important metrics to a dashboard
-8. I would add a lot more testing scenarios, currently my testing covers a lot of happy path testing, but I would also account for edge cases...(with more time obviously)
+To scale and secure the application for a high volume of users, I would implement the following improvements:
+
+1. **Use a Persistent SQL Database:** Replace the in-memory database with a production-grade SQL database like PostgreSQL or MySQL to ensure data persistence, consistency, and scalability.
+
+2. **Add a Caching Layer:** Implement a caching layer (e.g., Redis or Memcached) with an appropriate Time-to-Live (TTL) configuration to reduce database load by caching frequently accessed data, such as lists of customers or individual customer details.
+
+3. **Enhance Security with Role-Based Access Control (RBAC):** Introduce RBAC to manage permissions effectively, ensuring only authorized users can perform critical actions like deleting customer records. Add a confirmation screen to the delete endpoint to prevent accidental deletions.
+
+4. **Deploy on Cloud Infrastructure with Database Replication:** Host the application on scalable cloud infrastructure (AWS or Azure) and distribute read-heavy workloads across database replicas to improve response times and support a large user base.
+
+5. **Enable Auto-Scaling:** Configure auto-scaling groups within the cloud environment (AWS or Azure) to dynamically add or remove instances based on traffic demands, ensuring optimal performance and cost-efficiency.
+
+6. **Implement Rate Limiting, Throttling, and Tracking:** Enforce rate limits and throttling on API endpoints to protect against abuse and excessive usage, and track endpoint access to monitor user behavior and improve application reliability.
+
+7. **Emit Metrics to a Monitoring Dashboard:** Set up a comprehensive monitoring system to emit key performance metrics (e.g., response times, error rates) to a real-time dashboard, enabling prompt detection and resolution of issues.
+
+8. **Expand Test Coverage:** Enhance test coverage by incorporating additional testing scenarios beyond the “happy path,” including edge cases and failure conditions, to ensure robust and reliable functionality across different conditions.
