@@ -60,7 +60,7 @@ With this setup, you should have a fully functional Java API for managing custom
 1. I would use an actual SQL (Postgres, MySQL) database as opposed to an in memory database
 2. I would add a caching layer (with an appropriate Time to live) so we won't have to make a lot of get calls to retrieve a list of customers or to view a single customer
 3. I would add some RBAC and a confirmation screen for the delete endpoint (don't want anyone to willy-nilly delete a customer)
-4. I would host this on Azure or AWS serves, Distributing read-heavy workloads to database replicas.
+4. I would host this on Azure or AWS servers, Distributing read-heavy workloads to database replicas.
 5. I would configure auto-scaling groups in cloud providers (AWS, Azure) to add or remove instances based on traffic.
 6. I would add some rate limiting and throttling  and tracking for users accessing the defined endpoints
 7. I would emit important metrics to a dashboard
